@@ -2,12 +2,12 @@ import mongoose from 'mongoose';
 
 const bioSchema = new mongoose.Schema({
   heading: {
-    type: String,
-    required: true
+    en: { type: String, required: true },
+    vi: { type: String, required: true }
   },
   text: {
-    type: String,
-    required: true
+    en: { type: String, required: true },
+    vi: { type: String, required: true }
   },
   image: {
     type: String
