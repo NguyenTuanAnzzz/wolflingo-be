@@ -63,6 +63,7 @@ const characterSchema = new mongoose.Schema({
     required: true
   },
   bio: [bioSchema],
+  gallery: [String],
   vocabulary: [vocabularySchema],
   quotes: [quoteSchema]
 }, {

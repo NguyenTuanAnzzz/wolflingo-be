@@ -3,7 +3,7 @@ import Character from '../models/character.model.js';
 // Get all characters
 export const getAllCharacters = async (req, res) => {
   try {
-    const characters = await Character.find();
+    const characters = await Character.find().select('-bio -quotes -gallery');
     res.status(200).json(characters);
   } catch (error) {
     res.status(500).json({ message: error.message });
