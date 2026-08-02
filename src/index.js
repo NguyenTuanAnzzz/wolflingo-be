@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import morgan from 'morgan';
 import mongoose from 'mongoose';
 import vocabularyRoutes from './routes/vocabulary.routes.js';
+import characterRoutes from './routes/character.routes.js';
 
 dotenv.config();
 
@@ -34,6 +35,7 @@ app.get('/api/courses', (req, res) => {
 });
 
 app.use('/api/vocabulary', vocabularyRoutes);
+app.use('/api/characters', characterRoutes);
 
 // Start server
 app.listen(PORT, () => {
