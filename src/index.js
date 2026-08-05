@@ -5,6 +5,9 @@ import morgan from 'morgan';
 import mongoose from 'mongoose';
 import vocabularyRoutes from './routes/vocabulary.routes.js';
 import characterRoutes from './routes/character.routes.js';
+import toeicRoutes from './routes/toeic.routes.js';
+import ieltsRoutes from './routes/ielts.routes.js';
+import { seedExamsData } from './scripts/seedExams.js';
 
 dotenv.config();
 
@@ -13,8 +16,12 @@ const PORT = process.env.PORT || 9999;
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGODB_URI)
-  .then(() => console.log('Connected to MongoDB!'))
+  .then(async () => {
+    console.log('Connected to MongoDB!');
+    await seedExamsData(false);
+  })
   .catch((err) => console.error('Error connecting to MongoDB:', err));
+
 
 // Middleware
 app.use(morgan('dev'));
@@ -36,6 +43,8 @@ app.get('/api/courses', (req, res) => {
 
 app.use('/api/vocabulary', vocabularyRoutes);
 app.use('/api/characters', characterRoutes);
+app.use('/api/toeic', toeicRoutes);
+app.use('/api/ielts', ieltsRoutes);
 
 // Start server
 app.listen(PORT, () => {
